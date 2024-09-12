@@ -1,33 +1,79 @@
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap");
+
+body {
+  background: #dbffb9;
+  color: #444;
+  margin: 0;
+}
+body {
+  font-family: "Poppins";
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  background-color: #fdf79e;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+header img {
+  max-width: 60px;
+
+  animation: rotate 8s linear infinite;
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
+header h1 {
+  margin: 0;
+  padding-top: 25px;
+  margin-left: 15px;
+  color: black;
+  font-size: 2em;
+  transform: rotate(3deg);
+}
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+.inputField {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  padding: 10px;
+  width: 20%;
+  margin: 4px;
+  border-radius: 4px;
+  border-style: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-color: #ffca47;
+}
+button {
+  padding: 10px;
+  width: 5%;
+  margin: 4px;
+  border-radius: 5px;
+  border-style: none;
+  background-color: #ffca47;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+  background-color: #e0b03d;
+  cursor: pointer;
 }
