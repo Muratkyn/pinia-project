@@ -61,8 +61,8 @@ input:focus {
   border-color: #ffca47;
 }
 button {
-  padding: 10px;
-  width: 5%;
+  padding: 10px 20px;
+  width: auto;
   margin: 4px;
   border-radius: 5px;
   border-style: none;

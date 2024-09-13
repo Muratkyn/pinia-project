@@ -9,8 +9,17 @@
       <button @click="addNewTodo">Add</button>
     </div>
     <div class="task-list">
-      <div v-for="todo in todoStore.todos">
-        <TaskList :todo="todo" :id="id"></TaskList>
+      <div v-if="todoStore.todos.length === 0">
+        <EmptyList />
+      </div>
+
+      <div v-else v-for="todo in todoStore.todos">
+        <TodoList :todo="todo" :id="id"></TodoList>
+      </div>
+    </div>
+    <div class="task-list">
+      <div v-for="todo in todoStore.getFav">
+        <TodoList :todo="todo" :id="id"></TodoList>
       </div>
     </div>
   </main>
@@ -19,12 +28,14 @@
 <script>
 import { ref } from "vue";
 import { useTodoStore } from "./store/TodoStore";
-import TaskList from "./components/TaskList.vue";
+import TodoList from "./components/TodoList.vue";
+import EmptyList from "./components/EmptyList.vue";
 export default {
-  components: { TaskList },
+  components: { TodoList, EmptyList },
   setup() {
     const todoStore = useTodoStore();
     const newTodo = ref("");
+    const filter = ref("all");
 
     const addNewTodo = () => {
       if (!newTodo) return;
@@ -38,6 +49,7 @@ export default {
       todoStore.addTodo(val);
       newTodo.value = "";
     };
+
     return {
       todoStore,
       addNewTodo,
