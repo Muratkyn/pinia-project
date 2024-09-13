@@ -19,10 +19,9 @@ header {
 
 header img {
   max-width: 60px;
-
-  animation: rotate 8s linear infinite;
+  animation: rotater 5s alternate-reverse infinite;
 }
-@keyframes rotate {
+@keyframes rotater {
   from {
     transform: rotate(0deg);
   }
@@ -40,7 +39,7 @@ header h1 {
   transform: rotate(3deg);
 }
 
-.inputField {
+.input-field {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,7 +52,7 @@ input {
   border-radius: 4px;
   border-style: none;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
+  transition: 0.3s ease;
 }
 
 input:focus {
@@ -62,18 +61,54 @@ input:focus {
   border-color: #ffca47;
 }
 button {
-  padding: 10px;
-  width: 5%;
+  padding: 10px 20px;
+  width: auto;
   margin: 4px;
   border-radius: 5px;
   border-style: none;
   background-color: #ffca47;
   font-weight: bold;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: 0.3s ease;
 }
 
 button:hover {
   background-color: #e0b03d;
   cursor: pointer;
+}
+
+button:active {
+  transform: scale(0.9) translate(0, 4px);
+}
+
+.task-list {
+  max-width: 640px;
+  margin: 20px auto;
+}
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 20px;
+  background: #fff;
+  margin-top: 20px;
+  border-radius: 4px;
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.task h3,
+.task .icons {
+  display: inline-block;
+}
+
+.task .icons {
+  text-align: right;
+}
+
+.task i {
+  font-size: 1.4em;
+  margin-left: 6px;
+  cursor: pointer;
+  color: #bbb;
 }
