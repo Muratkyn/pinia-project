@@ -11,7 +11,12 @@ export const useTodoStore = defineStore("todoStore", {
       {
         id: 2,
         title: "Feed Mirko",
-        isFav: true,
+        isFav: false,
+      },
+      {
+        id: 3,
+        title: "sdsd ssds",
+        isFav: false,
       },
     ],
     name: "Pinia TODO App",
@@ -21,15 +26,31 @@ export const useTodoStore = defineStore("todoStore", {
       if (!newTodo) return;
 
       this.todos.push({
-        id: this.todos.length + 1,
+        id: Math.round(Math.random() * 100000000),
         title: newTodo,
         isFav: false,
       });
     },
+    deleteTodo(id) {
+      this.todos = this.todos.filter((todo) => todo.id !== id);
+    },
+    toggleFav(id) {
+      const foundTask = this.todos.find((task) => task.id === id);
+      if (foundTask) {
+        foundTask.isFav = !foundTask.isFav;
+      }
+    },
   },
   getters: {
-    getFav() {
-      return this.todos.filter((todo) => todo.isFav);
+    // getFav() {
+    //   return this.todos.filter((todo) => todo.isFav);
+    // },
+    countAll() {
+      return this.todos.length;
+    },
+    countFavs() {
+      const favsList = this.todos.filter((todo) => todo.isFav);
+      return favsList.length;
     },
   },
 });

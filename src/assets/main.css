@@ -112,3 +112,12 @@ button:active {
   cursor: pointer;
   color: #bbb;
 }
+.task i.active {
+  color: red;
+}
+
+.button-list {
+  width: 640px;
+  text-align: right;
+  margin: 20px auto 0 auto;
+}
