@@ -13,8 +13,8 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 20px;
-  background-color: #fdf79e;
+  padding-top: 40px;
+  background-color: #faf38b;
 }
 
 header img {
@@ -43,6 +43,7 @@ header h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 10px;
 }
 
 input {

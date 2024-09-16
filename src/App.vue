@@ -2,7 +2,7 @@
   <main>
     <header>
       <img src="./assets/pinia-logo.svg" alt="pinia" />
-      <h1>{{ todoStore.name }}</h1>
+      <h1>{{ name }}</h1>
     </header>
     <div class="input-field">
       <input type="text" placeholder="I need to.." v-model="newTodo" />
@@ -16,19 +16,19 @@
     <div class="task-list" v-if="filter === 'all'">
       <p v-if="todoStore.todos.length > 0">
         You have
-        <strong class="bold">{{ todoStore.countAll }}</strong> tasks left!
+        <strong class="bold">{{ countAll }}</strong> tasks left!
       </p>
       <div v-if="todoStore.todos.length === 0">
         <EmptyList />
       </div>
 
-      <div v-else v-for="todo in todoStore.todos">
+      <div v-else v-for="todo in todos">
         <TodoList :todo="todo" :id="todo.id"></TodoList>
       </div>
     </div>
     <div class="task-list" v-if="filter === 'favs'">
-      <p>Favorite tasks ({{ todoStore.countFavs }})</p>
-      <div v-for="todo in todoStore.getFav">
+      <p>Favorite tasks ({{ countFavs }})</p>
+      <div v-for="todo in getFav">
         <TodoList :todo="todo" :id="todo.id"></TodoList>
       </div>
     </div>
@@ -37,6 +37,7 @@
 
 <script>
 import { ref } from "vue";
+import { storeToRefs } from "pinia";
 import { useTodoStore } from "./store/TodoStore";
 import TodoList from "./components/TodoList.vue";
 import EmptyList from "./components/EmptyList.vue";
@@ -44,6 +45,7 @@ export default {
   components: { TodoList, EmptyList },
   setup() {
     const todoStore = useTodoStore();
+    const { todos, name, getFav, countFavs, countAll } = storeToRefs(todoStore);
     const newTodo = ref("");
     const filter = ref("all");
     console.log(todoStore.todos, "todos");
@@ -64,6 +66,11 @@ export default {
       addNewTodo,
       newTodo,
       filter,
+      todos,
+      name,
+      getFav,
+      countFavs,
+      countAll,
     };
   },
 };

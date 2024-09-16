@@ -42,9 +42,9 @@ export const useTodoStore = defineStore("todoStore", {
     },
   },
   getters: {
-    // getFav() {
-    //   return this.todos.filter((todo) => todo.isFav);
-    // },
+    getFav() {
+      return this.todos.filter((todo) => todo.isFav);
+    },
     countAll() {
       return this.todos.length;
     },
