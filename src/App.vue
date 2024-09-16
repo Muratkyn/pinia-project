@@ -8,18 +8,28 @@
       <input type="text" placeholder="I need to.." v-model="newTodo" />
       <button @click="addNewTodo">Add</button>
     </div>
-    <div class="task-list">
+    <div class="button-list" v-if="todoStore.todos.length > 0">
+      <button @click="filter = 'all'">All</button>
+      <button @click="filter = 'favs'">Favs</button>
+    </div>
+
+    <div class="task-list" v-if="filter === 'all'">
+      <p v-if="todoStore.todos.length > 0">
+        You have
+        <strong class="bold">{{ todoStore.countAll }}</strong> tasks left!
+      </p>
       <div v-if="todoStore.todos.length === 0">
         <EmptyList />
       </div>
 
       <div v-else v-for="todo in todoStore.todos">
-        <TodoList :todo="todo" :id="id"></TodoList>
+        <TodoList :todo="todo" :id="todo.id"></TodoList>
       </div>
     </div>
-    <div class="task-list">
+    <div class="task-list" v-if="filter === 'favs'">
+      <p>Favorite tasks ({{ todoStore.countFavs }})</p>
       <div v-for="todo in todoStore.getFav">
-        <TodoList :todo="todo" :id="id"></TodoList>
+        <TodoList :todo="todo" :id="todo.id"></TodoList>
       </div>
     </div>
   </main>
@@ -36,7 +46,7 @@ export default {
     const todoStore = useTodoStore();
     const newTodo = ref("");
     const filter = ref("all");
-
+    console.log(todoStore.todos, "todos");
     const addNewTodo = () => {
       if (!newTodo) return;
       const val = newTodo.value
@@ -49,11 +59,11 @@ export default {
       todoStore.addTodo(val);
       newTodo.value = "";
     };
-
     return {
       todoStore,
       addNewTodo,
       newTodo,
+      filter,
     };
   },
 };
